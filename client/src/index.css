@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap');
+
+@layer base {
+  :root {
+    --background: 26 40% 97%;
+    --foreground: 351 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 351 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 351 30% 15%;
+
+    --primary: 351 74% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 344 50% 94%;
+    --secondary-foreground: 351 30% 15%;
+
+    --muted: 26 30% 93%;
+    --muted-foreground: 351 15% 46%;
+
+    --accent: 349 68% 82%;
+    --accent-foreground: 351 74% 26%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 344 30% 89%;
+    --input: 344 30% 89%;
+    --ring: 351 74% 36%;
+
+    --radius: 0.75rem;
+
+    /* Custom semantic tokens */
+    --success: 152 60% 42%;
+    --success-foreground: 0 0% 100%;
+    --warning: 37 90% 56%;
+    --warning-foreground: 30 60% 15%;
+    --info: 205 75% 48%;
+    --info-foreground: 0 0% 100%;
+
+    --sidebar-background: 26 40% 97%;
+    --sidebar-foreground: 351 30% 15%;
+    --sidebar-primary: 351 74% 36%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 344 50% 94%;
+    --sidebar-accent-foreground: 351 30% 15%;
+    --sidebar-border: 344 30% 89%;
+    --sidebar-ring: 351 74% 36%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    @apply tracking-tight font-extrabold;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Scroll reveal animations */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; filter: blur(4px); }
+  to { opacity: 1; filter: blur(0); }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
