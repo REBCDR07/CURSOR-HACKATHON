@@ -54,12 +54,15 @@ interface AppDataContextType {
   markPrise: (treatmentId: string, heurePriseId: string) => Promise<void>;
   respondAccessRequest: (id: string, action: "accepted" | "rejected") => Promise<void>;
   requestAccess: (patientPseudo: string) => Promise<void>;
+  apiBaseUrl: string;
+  apiOrigin: string;
+  appUrl: string;
 }
 
 const AppDataContext = createContext<AppDataContextType | null>(null);
 
 export function AppDataProvider({ children }: { children: ReactNode }) {
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, apiBaseUrl, apiOrigin, appUrl } = useAuth();
   const [dossier, setDossier] = useState<any | null>(null);
   const [treatments, setTreatments] = useState<Treatment[]>([]);
   const [accessRequests, setAccessRequests] = useState<AccessRequest[]>([]);
@@ -141,8 +144,18 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
   return (
     <AppDataContext.Provider
       value={{
-        dossier, treatments, accessRequests, isLoading, refreshData,
-        addTreatment, markPrise, respondAccessRequest, requestAccess
+        dossier,
+        treatments,
+        accessRequests,
+        isLoading,
+        refreshData,
+        addTreatment,
+        markPrise,
+        respondAccessRequest,
+        requestAccess,
+        apiBaseUrl,
+        apiOrigin,
+        appUrl,
       }}
     >
       {children}

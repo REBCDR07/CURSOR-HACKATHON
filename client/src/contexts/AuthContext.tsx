@@ -1,6 +1,7 @@
-import { createContext, useContext, useState, ReactNode, useEffect } from "react";
+import { createContext, useContext, useState, ReactNode, useEffect, useMemo } from "react";
 import { authService } from "@/services/auth.service";
 import { toast } from "sonner";
+import { API_BASE_URL, apiOrigin, resolveAppUrl } from "@/config/env";
 
 export type UserRole = "patient" | "doctor";
 
@@ -22,6 +23,12 @@ interface AuthContextType {
   logout: () => void;
   isAuthenticated: boolean;
   isLoading: boolean;
+  /** Base des appels API (ex. `/api` ou `https://…/api`) */
+  apiBaseUrl: string;
+  /** Origine backend si définie (`VITE_API_URL`), sinon chaîne vide en dev proxy */
+  apiOrigin: string;
+  /** URL du front (env ou navigateur) */
+  appUrl: string;
 }
 
 interface RegisterData {
@@ -94,8 +101,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
   };
 
+  const envSlice = useMemo(
+    () => ({
+      apiBaseUrl: API_BASE_URL,
+      apiOrigin,
+      appUrl: resolveAppUrl(),
+    }),
+    []
+  );
+
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, isAuthenticated: !!user, isLoading }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        login,
+        register,
+        logout,
+        isAuthenticated: !!user,
+        isLoading,
+        ...envSlice,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

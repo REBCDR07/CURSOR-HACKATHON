@@ -12,21 +12,38 @@ dotenv.config();
 
 const app = express();
 
-// 1. CONFIGURATION CORS PRÉCISE (Crucial pour Render/Vercel)
-app.use(cors({
-  origin: 'https://healthpocket-frontend.onrender.com', // Ton URL de front
-  credentials: true
-}));
+function corsAllowedOrigins() {
+  const raw = process.env.FRONTEND_URL || 'http://localhost:8080';
+  return raw.split(',').map((s) => s.trim()).filter(Boolean);
+}
 
-// Configuration de la sécurité (Helmet peut bloquer certaines images si mal réglé)
-app.use(helmet({
-  crossOriginResourcePolicy: false, // Permet l'affichage des images base64 si besoin
-}));
+app.use(
+  cors({
+    origin(origin, callback) {
+      const allowed = corsAllowedOrigins();
+      if (!origin) {
+        callback(null, true);
+        return;
+      }
+      if (allowed.includes(origin)) {
+        callback(null, origin);
+        return;
+      }
+      callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+  })
+);
+
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  })
+);
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/access', accessRoutes);
@@ -37,18 +54,11 @@ app.get('/', (req, res) => {
   res.status(200).json({ status: 'success', message: 'API MonCarnet Santé est en ligne' });
 });
 
-// 2. ÉCOUTE DU PORT (Indispensable pour Render)
-const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => {
-  console.log(`Serveur démarré sur le port ${PORT}`);
-});
-
-// Gestion des erreurs
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   res.status(statusCode).json({
     status: 'error',
-    message: err.message
+    message: err.message,
   });
 });
 
