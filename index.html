@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#1b4332" />
+    <meta name="description" content="HealthPocket BJ — Votre carnet de santé numérique hors connexion pour le Bénin. Suivez vos traitements, recevez des rappels, exportez en PDF.">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="HealthPocket" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/png" href="/icon-192.png">
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    
+    
+    <meta property="og:type" content="website" />
+    <title>HealthPocket BJ — Carnet de santé numérique</title>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
+    <meta property="og:title" content="HealthPocket BJ — Carnet de santé numérique">
+  <meta name="twitter:title" content="HealthPocket BJ — Carnet de santé numérique">
+  <meta property="og:description" content="HealthPocket BJ — Votre carnet de santé numérique hors connexion pour le Bénin. Suivez vos traitements, recevez des rappels, exportez en PDF.">
+  <meta name="twitter:description" content="HealthPocket BJ — Votre carnet de santé numérique hors connexion pour le Bénin. Suivez vos traitements, recevez des rappels, exportez en PDF.">
+  <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3bdcba71-9445-45f9-8675-77db530f19dc?Expires=1774142329&amp;GoogleAccessId=go-api-on-aws%40gpt-engineer-390607.iam.gserviceaccount.com&amp;Signature=uaaLqfsohsGRJ3fcemb7G4qu1QLNNZ8d%2FeFE4xAd35YVDFvg8Vm4Pz2r9ro%2BSR9o24RQNTDVxgdDGgLji79NTfvhEyECNoppmfYitoTk%2B3hg%2Fz9VRnbGTGq6I0H0TWB0ziFYbq2v4HmAvdBhoPcEx%2BzLKBNyCCiNkpkdzj43Sv3p5b0c39q6uQeD1KoVQi5zuSaIitwZQpKySoj40mu%2FcumLx9mIUTiONILJG0HhISlh%2B7M%2BVnHKOp%2FRAqTRF3DnQN%2F2GIHcgAxf0rVzztsD5OG4IwbFND%2FJviV4x9amXJfvPTlQm%2BiC1ZflWFtTdAa8oNtw4DPwB0wQDaqMOSgVag%3D%3D">
+  <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3bdcba71-9445-45f9-8675-77db530f19dc?Expires=1774142329&amp;GoogleAccessId=go-api-on-aws%40gpt-engineer-390607.iam.gserviceaccount.com&amp;Signature=uaaLqfsohsGRJ3fcemb7G4qu1QLNNZ8d%2FeFE4xAd35YVDFvg8Vm4Pz2r9ro%2BSR9o24RQNTDVxgdDGgLji79NTfvhEyECNoppmfYitoTk%2B3hg%2Fz9VRnbGTGq6I0H0TWB0ziFYbq2v4HmAvdBhoPcEx%2BzLKBNyCCiNkpkdzj43Sv3p5b0c39q6uQeD1KoVQi5zuSaIitwZQpKySoj40mu%2FcumLx9mIUTiONILJG0HhISlh%2B7M%2BVnHKOp%2FRAqTRF3DnQN%2F2GIHcgAxf0rVzztsD5OG4IwbFND%2FJviV4x9amXJfvPTlQm%2BiC1ZflWFtTdAa8oNtw4DPwB0wQDaqMOSgVag%3D%3D">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
